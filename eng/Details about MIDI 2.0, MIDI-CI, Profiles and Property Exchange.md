@@ -10,11 +10,12 @@ These five core documents serve as the basis for the future expansion of MIDI.
 
 The following specifications are now available and included in a single Zip file in the link above. 
 
-M2-100-U v1.0 MIDI 2.0 Specification Overview
-M2-101-UM v1.1 MIDI-CI Specification
-M2-102-U v1.0 Common Rules for MIDI-CI Profiles
-M2-103-UM v1.0 Common Rules for MIDI-CI PE 
-M2-104-UM v1.0 UMP and MIDI 2.0 Protocol Specification
+* M2-100-U v1.0 MIDI 2.0 Specification Overview
+* M2-101-UM v1.1 MIDI-CI Specification
+* M2-102-U v1.0 Common Rules for MIDI-CI Profiles
+* M2-103-UM v1.0 Common Rules for MIDI-CI PE 
+* M2-104-UM v1.0 UMP and MIDI 2.0 Protocol Specification
+
 We will be adding more information on MIDI 2.0 soon so check back here often.
 
 ## Introduction to MIDI 2.0
