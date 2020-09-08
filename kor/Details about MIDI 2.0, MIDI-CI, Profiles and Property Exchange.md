@@ -62,3 +62,48 @@ MIDI 2.0은 세계적으로 10여년에 걸친 개발 노력의 산물입니다.
 향후 미디 스펙의 개발뿐만 아니라 미래 호환성과 발전을 보장하기 위한 보호장치는 지속적으로 일본 MIDI 사양을 총괄하는 일본 무역협회(AMEI)인 음악전자산업협회(AMEI)와 긴밀히 협력하고 있는 MIDI 제조업체협회(MMA)가 관리할 것입니다.
 
 MIDI는 앞으로 다가올 10년동안 지속적으로 음악가, DJ, 프로듀서, 교육자, 아티스트 그리고 창작, 공연, 학습 등 음악과 아티스트의 작품을 공유하는 모든 사람들을 도울것입니다.
+
+###
+
+###
+
+###
+
+### 1. 6 MIDI 1.0의 미래
+
+MIDI 1.0은 교체되지 않습니다.
+오히려 확장하고 있으며 새 MIDI 2.0 환경에 잘 통합되면서 계속될 것으로 예상됩니다.
+이는 기본 MIDI 데이터 형식인 UMP(유니버설 MIDI 패킷)의 일부에 관한 것입니다.
+많은 MIDI 디바이스들이 모든 기능을 수행하기 위해 새로운 MIDI 2.0의 신기능이 필요하지는 않을 것이고, 몇몇 디바이스들은 MIDI 2.0의 다른 확장 기능인 프로파일 구성(Profile Configuration) 또는 프로퍼티 교환(Property Exchange)을 사용하면서 MIDI 1.0 프로토콜을 그대로 쓰게 될 것입니다. 
+
+### 1.7 다음 단계는?
+
+이미 MIDI 2.0 USB 사양에 대해 작업하고 있는 USB-IF 그룹이 있습니다. NAMM(음악 국제 산업 협회: National Association of Music Merchants)의 동계 미팅(Winter Namm)이 모든 주요 OS 개발업체(애플, 구글, 마이크로소프트 등)뿐만 아니라 DAW와 플러그인 소프트웨어 회사들과 함께 개최된 바 있습니다. 
+
+롤랜드(Roland)는 MIDI 2.0 지원 콘트롤러를 출시했습니다. [MIDI 2.0 ready controller.](https://www.midi.org/articles-old/roland-announces)
+
+MIDI 1.0 또한 매우 잘 작동합니다. 사실 MIDI 2.0은 그냥 더 많은 MIDI인 것으로, 새 기능이 새 악기에 도착하면 기존의 디바이스와 시스템에서 잘 작동합니다. 1983년 이래 MIDI에 추가된 다른 긴 리스트의 항목들 역시 마찬가지입니다. MIDI 2.0은 36년 간 계속된 MIDI 진화의 일부일 뿐이고, 점진적인 진화는 계속됩니다.  
+
+NAMM 회의 이후 월요일에는 MMA(미디 제작 협회: MIDI Manufacturers Association)와 AMEI(전자음악산업협회 :Association of Music Electronics Industry)의 몇몇 전담팀들이 내년 계획을 세우기 위해 온종일 미팅을 가졌습니다.
+
+[photo](https://www.midi.org/images/easyblog_articles/413/b2ap3_large_IMG_3464.jpg)
+
+앞줄 :
+* 플로리안 보머즈(Florian Bomers) - Bome Software, MMA 기술표준위원
+* 히카와 카즈 Kaz Hikawa - Crimson Technology, AMEI MIDI Standards Committee
+* 애선 빌리어스(Athan Billias) - 야마하, MMA 임원회 
+* 미즈모토 코이치(Koichi Mizumoto) - 롤랜드, AMEI 미디확장의 미래(MIDI 2.0) 연구팀장 
+* 마이크 켄트(Mike Kent) - M2Kimage, MMA 기술표준위원, MIDI CI 연구팀장
+
+둘째줄:
+* 릭 코헨(Rick Cohen)- Qubiq, MMA 기술표준위원, 프로토콜 연구팀장
+* 프란츠 디트로(Franz Detro) - Native Instruments
+* 에반 볼스터(Evan Balster) , imitone(VSTi)
+* 미우라 다이스케(Daisuke Miura)- 야마하, AMEI 기술표준위원회장
+* 타나카 슌스케(Shunsuke Tanaka) - Crimson Technology
+* 이시구로 타카히사(Takahisa Ishiguro) - Stone System
+* 로렌스 레빈(Lawrence Levine) - Horn, MMA 임원회, MIDI 2.0 연구팀 공동팀장
+
+MIDI 2.0 배너를 들고 있는 사람:
+* 앤드류 미(Andrew Mee) - 프로퍼티 교환 관련 야마하 컨설턴트 
+* 롭 램플리(Rob Rampley) - Media Overkill
