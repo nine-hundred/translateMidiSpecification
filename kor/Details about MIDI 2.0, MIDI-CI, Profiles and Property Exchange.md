@@ -84,7 +84,7 @@ MIDI 1.0은 교체되지 않습니다.
 
 MIDI 1.0 또한 매우 잘 작동합니다. 사실 MIDI 2.0은 그냥 더 많은 MIDI인 것으로, 새 기능이 새 악기에 도착하면 기존의 디바이스와 시스템에서 잘 작동합니다. 1983년 이래 MIDI에 추가된 다른 긴 리스트의 항목들 역시 마찬가지입니다. MIDI 2.0은 36년 간 계속된 MIDI 진화의 일부일 뿐이고, 점진적인 진화는 계속됩니다.  
 
-NAMM 회의 이후 월요일에는 MMA(미디 제작 협회: MIDI Manufacturers Association)와 AMEI(전자음악산업협회 :Association of Music Electronics Industry)의 몇몇 전담팀들이 내년 계획을 세우기 위해 온종일 미팅을 가졌습니다.
+NAMM 회의 이후 월요일에는 MMA(미디 제작자 협회: MIDI Manufacturers Association)와 AMEI(전자음악산업협회 :Association of Music Electronics Industry)의 몇몇 전담팀들이 내년 계획을 세우기 위해 온종일 미팅을 가졌습니다.
 
 [photo](https://www.midi.org/images/easyblog_articles/413/b2ap3_large_IMG_3464.jpg)
 
@@ -107,3 +107,19 @@ NAMM 회의 이후 월요일에는 MMA(미디 제작 협회: MIDI Manufacturers 
 MIDI 2.0 배너를 들고 있는 사람:
 * 앤드류 미(Andrew Mee) - 프로퍼티 교환 관련 야마하 컨설턴트 
 * 롭 램플리(Rob Rampley) - Media Overkill
+
+### 1.8 왜 MMA (미디 제작자협회 MIDI Manufacturers Association)에 가입해야 하는가
+만약 여러분이 미디 소프트웨어나 하드웨어 개발자라면, MMA에 가입해야 할 이유가 매우 많습니다. 
+이 기사에는 MIDI 2.0에 대한 정보가 포함되어 있으나 MIDI 2.0 제품 개발을 시작하기에는 충분하지 않습니다.
+우리가 정보가 최종적으로 승인되기 전에 사양의 세부정보를 공개하지 않는 이유는, 만약 정보가 너무 일찍 공개되어 변경되는 부분이 생길 때, 상호운용의 문제가 야기될 수 있어서입니다. 
+
+만약 여러분이 MMA에 지금 가입한다면, 전체 MIDI 2.0 사양의 현재 버전에 접근할 수 있을 뿐만 아니라, 프로파일(Profiles)과 프로퍼티 교환(Property Exchange) 신호를 포함한 향후의 MIDI 사양에서도 발언권을 가지게 될 것입니다.
+
+MIDI-CI와 MIDI 2.0을 구현하기 위해서는 제조업체 SysEx ID가 필요합니다.
+SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버십에 포함되어 있습니다.
+여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 신호를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
+
+또한 우리는 MIDI 2.0 로고와 라이선싱 프로그램 개발 작업도 진행중입니다.
+
+따라서, 우리는 지금 여러분이 MMA에 가입하여 MIDI 2.0을 시작하는 데 필요한 모든 문서에 접근할 수 있기를 바랍니다.
+
