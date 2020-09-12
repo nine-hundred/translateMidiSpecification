@@ -123,7 +123,7 @@ MIDI 2.0 배너를 들고 있는 사람:
 
 MIDI-CI와 MIDI 2.0을 구현하기 위해서는 제조업체 SysEx ID가 필요합니다.
 SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버십에 포함되어 있습니다.
-여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 신호를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
+여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 신호를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환 테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
 
 또한 우리는 MIDI 2.0 로고와 라이선싱 프로그램 개발 작업도 진행중입니다.
 
@@ -133,7 +133,7 @@ SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버
 
 우리는 많은 웹사이트의 코멘트를 모니터링하고 있으며, MIDI 2.0에 대한 몇 가지 질문뿐 아니라 요청한 몇몇 MIDI 2.0 기능에 대한 비디오 또한 제작중에 있습니다. 
 
-<span style="color:red">[ MIDI 2.0 디바이스는 새 커넥터나 케이블의 사용을 필요로 할까? ]</span>
+**[ MIDI 2.0 디바이스는 새 커넥터나 케이블의 사용을 필요로 할까? ]**
 
 아니오, MIDI 2.0는 전송 애그노스틱(시스템에 대한 지식 없이도 기능을 수행할 수 있게 만든 기술) 프로토콜입니다. 
 
@@ -150,7 +150,7 @@ MIDI가 처음 나왔을 때 MIDI는 단지 클래식 5핀 DIN 케이블 상에�
 
 MIDI 1.0 신호는 현재 5핀 DIN, 시리얼 포트, TRS(Tip Ring Sleeve) 1/8 케이블들과 파이어와이어 그리고 이더넷 및 각종 다양한 USB 케이블에서 작동합니다.
 
-<span style="color:red">[이제 MIDI 2.0이 이렇게 다양한 MIDI 1.0 전송 방식으로 실행될 수 있을까?]</span>
+**[ 이제 MIDI 2.0이 이렇게 다양한 MIDI 1.0 전송 방식으로 실행될 수 있을까? ]**
 
 아닙니다. 각 전송방식을 위해 작성된 새 사양을 필요로 할 것입니다. 
 
@@ -164,43 +164,42 @@ MIDI 1.0 신호는 현재 5핀 DIN, 시리얼 포트, TRS(Tip Ring Sleeve) 1/8 �
 
 USB는 MIDI 2.0의 첫 번째 타깃입니다. 
 
-<span style="color:red">[MIDI 2.0이 더 안정적인 타이밍(timing)을 제공할 수 있을까?]</span>
+**[ MIDI 2.0이 더 안정적인 타이밍(timing)을 제공할 수 있을까? ]**
 
-그렇습니다. MIDI 2.0 전송 정의는 향상된 타이밍 특성을 위해 더 높은 속도로 제공될 수 있습니다. 딜레이를 유발하는 데이터 병목 현상 가능성을 현저히 줄이도록 더 많은 데이터가장치 간에 전송될 것입니다. 
+그렇습니다. MIDI 2.0 전송 정의는 향상된 타이밍 특성을 위해 더 높은 속도로 제공될 수 있습니다. 딜레이를 유발하는 데이터 병목 현상 가능성을 현저히 줄이도록 더 많은 데이터가 장치 간에 전송될 것입니다. 
 
 또한 MIDI 2.0는 선택적으로 "지터 리덕션 타임스탬프(Jitter Reduction Timestamps)"를 제공합니다.
 
-지터 리덕션 타임스탬프(JR Timestamps)로 하여금, 우리는 여러 개의 노트를 이상적인 타이밍으로 재생할 수 있습니다. 실은, 모든 MIDI 신호는 정확한 타이밍 정보로 표시될 수 있습니다. 이는 더 정확한 타이밍을 얻을 수 있느 MIDI 클럭 신호에도 적용됩니다.
+지터 리덕션 타임스탬프(JR Timestamps)로 하여금, 우리는 여러 개의 노트를 이상적인 타이밍으로 재생할 수 있습니다. 실은, 모든 MIDI 신호는 정확한 타이밍 정보로 표시될 수 있습니다. 이는 더 정확한 타이밍을 얻을 수 있는 MIDI 클럭 신호에도 적용됩니다.
 
 지터 리덕션 타임스탬프의 목표:
 * 정확한 타이밍으로 퍼포먼스 캡처하기
 * 지터가 발생하는 시스템을 통해 정확한 타이밍으로 MIDI 신호 전달하기
-* 전 시스템에 미치는 동기화와 마스터클럭, 또는 송신자와 수신자 간의 명시적인클럭 동기화에 의존하지 않음.
+* 전 시스템에 미치는 동기화와 마스터클럭, 또는 송신자와 수신자 간의 명시적인 클럭 동기화에 의존하지 않음.
 
 참고: 타이밍에 대한 오류로는 지터(정확성)와 레이턴시(싱크)의 두 가지 원인이 있습니다.
 지터 리덕션 타임스탬프의 메커니즘은 지터로 발생한 오류들만 해결합니다. 
 동기화 문제 혹은 시스템 상의 여러 개의 장치를 넘나들며 생기는 시간 정렬 문제는 레이턴시 측정을 필요로 합니다.
 이는 복잡한 문제이며 JR 타임스탬프의 메커니즘으로는 해결되지 않습니다. 
 
-<span style="color:red">[MIDI 2.0이 더 큰 해상도를 제공할 수 있을 것인가?]</span>
+**[ MIDI 2.0이 더 큰 해상도를 제공할 수 있을 것인가? ]**
 
 그렇습니다. MIDI 1.0 신호는 보통 7비트(128개의 CC 신호만 존재하기에 폭넓게 구현되지 않는 선에서 14비트도 가능)
-MIDI 2.0 벨로서티는 16비트이고 128 개의 컨트롤 변경(control change) 신호, 16,384개의 레지스터 컨트롤러(registered controllers), 16,384개의 할당 가능한 컨트롤러(assignable controllers), 폴리와 채널 프레셔(poly & channel pressure(애프터터치의 기능)) 그리고 피치벤드는 32비트입니다. 
+MIDI 2.0 벨로서티는 16비트이고 128 개의 컨트롤 변경(control change) 신호, 16,384개의 레지스터 컨트롤러(registered controllers), 16,384개의 할당 가능한 컨트롤러(assignable controllers), 폴리와 채널 프레셔(poly & channel pressure(애프터터치의 기능)) 및 피치벤드는 32비트입니다. 
 
-<span style="color:red">MIDI 2.0가 미분음(microtone: 반음보다 작은 음정)의 제어와 다양한 비 서양 스케일을 만드는 것을 더 쉽게 만들 수 있을까?</span> 
+**[ MIDI 2.0가 미분음(microtone: 반음보다 작은 음정)의 제어와 다양한 비 서양 스케일을 만드는 것을 더 쉽게 만들 수 있을까? ]**
 
 네, MIDI 2.0은 직접 음표의 피치를 제어하는 것을 허용합니다(아래 영상들을 보십시오).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UQx1L6nojGE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 1](https://www.youtube.com/UQx1L6nojGE)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/okrZYm5OJzo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 2](https://www.youtube.com/okrZYm5OJzo)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/x2QxFnsKWMQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 3](https://www.youtube.com/x2QxFnsKWMQ)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FWf2y7dzULQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 4](https://www.youtube.com/FWf2y7dzULQ)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zOysm_lZJmg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[video 5](https://www.youtube.com/zOysm_lZJmg)
 
 MMA와 AMEI는 MIDI 2.0 프로토타입 작업을 선언합니다.
 
@@ -208,7 +207,7 @@ MMA와 AMEI는 MIDI 2.0 프로토타입 작업을 선언합니다.
 	- 미디 제작자 협회(MMA)와 AMEI
 
 ---
-![photo](https://www.midi.org/images/easyblog_articles/413/IMG_036_20180131-234337_1.JPG)
+[photo](https://www.midi.org/images/easyblog_articles/413/IMG_036_20180131-234337_1.JPG)
 
 
 > MIDI-CI에 있어서 매우 흥미로운 부분은, 현재 MIDI 1.0 장비와의 하위 호환성을 유지하면서 프로토콜 협상( Protocol Negotiation)이 더 큰 해상도, 더 많은 채널, 향상된 성능 그리고 표현력 등 새로운 기능을 가능하게 만드는 새로운 산업 표준 MIDI 프로토콜에 대한 길을 열었다는 것입니다.
