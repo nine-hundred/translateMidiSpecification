@@ -74,6 +74,60 @@ MIDI 2.0이 디바이스에 제공하는 추가적인 기능은 MIDI-CI가 활�
 
 ###
 
+#### 1.5.5 MIDI 2.0 프로토콜 메시지
+
+MIDI 2.0 프로토콜은 확장된 기능을 제공함과 동시에 이전 버전과의 호환성과 쉬운 변환 과정을 유지하고자 MIDI 1.0 프로토콜의 아키텍처를 사용합니다.
+
+* 모든 채널 보이스 메시지(Channel Voice Messages)의 데이터 해상도를 확대시킵니다. 
+* 통합 메시지들을 단일 원자 메시지로 응집시키는 것으로 몇몇 메시지를 더 쉽게 사용하도록 만듭니다. 
+* 향상된 노트 세부 컨트롤과 음악적 표현을 제공하기 위해 몇 가지 새로운 채널 보이스 메시지를 추가합니다.
+* 시스템 익스클루시브 8과 혼합 데이터셋(Mixed Data Set)과 같은 새로운 데이터 메시지들을 추가합니다. 시스템 익스클루시브 8 메시지는 MIDI 1.0의 시스템 익스클루시브와 아주 흡사하지만 8비트 데이터 형식을 가집니다. 혼합 데이터셋(Mixed Data Set) 메시지는 비 미디 데이터를 포함하여 큰 데이터셋을 전송하는 데 사용됩니다. 
+* 모든 시스템 메시지를 MIDI 1.0에서와 똑같이 유지합니다.
+
+확장된 해상도와 확충된 기능들 
+
+이 MIDI 2.0 프로토콜 노트 메시지의 예시는 MIDI 1.0 프로토콜에 해당하는 것을 능가하는 확장을 보여줍니다.
+MIDI 2.0 프로토콜 노트 온(Note On)은 더 높은 해상도의 벨로서티를 가지고 있습니다.
+
+2 개의 새 필드, 즉 속성 타입(Attribute Type)과 속성 데이터 필드(Attribute data field)는 조음이나 튜닝 세부 사항 같은 추가 데이터를 위한 공간을 제공합니다.
+
+사용하기 쉬운 기능들: 등록 컨트롤러(RPN: Registered Controllers)와 할당 가능 컨트롤러(NRPN: Assignable Controllers)
+
+RPN과 NRPN을 MIDI 1.0 프로토콜로 만들고 편집하려면 복합 메시지의 사용이 요구됩니다. 
+
+이는 개발자와 사용자 모두에게 어려움과 혼란을 줄 수 있습니다. MIDI 2.0 프로토콜은 RPN과 NRPN 복합 메시지를 단일 메시지로 교체합니다. 새 등록 컨트롤러와 할당 가능 컨트롤러는 더 사용하기 쉬워졌습니다. 
+
+MIDI 2.0 프로토콜은, RPN와 NRPN을 16,384 개의 등록 컨트롤러와 16,384 개의 할당 가능 컨트롤러로 대체하면서 컨트롤 체인지 메시지(Control Change messages)만큼 사용하기 쉽도록 만듭니다.
+
+너무 많은 컨트롤러를 관리하는 것은 번거로운 일입니다.
+그러므로, 등록 컨트롤러는 128 개의 뱅크(Bank)로 구성되며, 각 뱅크는 128 개의 컨트롤러를 가지고 있습니다. 할당 가능 컨트롤러 또한 128 개의 뱅크로 구성되며, 각 뱅크에는 128 개의 컨트롤러가 있습니다.
+
+등록 컨트롤러와 할당 가능 컨트롤러는 해상도 면에서 최대 32비트의 데이터값을 지원합니다.
+
+#### 1.5.6 MIDI 2.0 프로그램 체인지 메시지
+MIDI 2.0 프로토콜은 MIDI 1.0의 프로그램 체인지(Program Change) 및 뱅크 셀렉트(악기 선택) 메커니즘을 하나의 메시지로 결합합니다. 
+뱅크와 프로그램을 선택을 위한 MIDI 1.0 메카니즘은 3가지 미디 메시지를 보내는 것이 필요합니다. 
+MIDI 2.0에서는 하나의 새로운 MIDI 2.0 프로그램 체인지 메시지에서 뱅크 선택 및 프로그램 체인지를 복제하는 것으로 메커니즘을 변경합니다.
+MIDI 2.0의 뱅크와 프로그램은 MIDI 1.0에서의 뱅크와 프로그램으로 직접 변환됩니다.
+
+MIDI 2.0 프로그램 체인지 메시지는 항상 프로그램 하나를 선택합니다.
+뱅크 유효 비트 (B)는 뱅크 선택이 메시지를 통해서 수행되는지 아닌지를 결정합니다.
+
+만약 Bank Valid = 0이면, 메시지를 받은 장치는 새 뱅크를 선택하지 않고 프로그램 체인지를 수행하고, 수신 장치는 현재 선택되어 있는 뱅크를 유지합니다.
+
+뱅크 MSB(최상위 비트 : Most Significant Byte)와 뱅크 LSB(최하위 비트 : Least Significant Byte) 데이터필드는 0으로 채워져 있습니다. 
+
+만약 Bank Valid = 1일 때, 수신받은 장치는 뱅크와 프로그램 체인지 모두를 수행합니다.
+
+기타, 아직 정의되지 않고 예정되어 있는 옵션 플래그들이 있습니다.
+
+#### 1.5.7 MIDI 1.0 프로토콜과 MIDI 2.0 프로토콜을 위한 새로운 데이터 메시지
+
+새 데이터 메시지에는 시스템 익스클루시브 8(System Exclusive 8)과 혼합 데이터셋(Mixed Data Set)가 포함됩니다.
+시스템 익스클루시브 8 메시지는 MIDI 1.0 시스템 익스클루시브와 흡사하지만 8비트 데이터 형식을 가집니다. 
+혼합 데이터셋(Mixed Data Set) 메시지는 미디가 아닌 데이터를 포함하여 큰 데이터셋을 전송하는 데 사용됩니다. 
+이 두 종류의 메시지는 MIDI 1.0 또는 MIDI 2.0을 위한 유니버설 MIDI 패킷 형식을 이용할 때 사용될 수 있습니다.
+
 ### 1. 6 MIDI 1.0의 미래
 
 MIDI 1.0은 교체되지 않습니다.
@@ -119,11 +173,11 @@ MIDI 2.0 배너를 들고 있는 사람:
 이 기사에는 MIDI 2.0에 대한 정보가 포함되어 있으나 MIDI 2.0 제품 개발을 시작하기에는 충분하지 않습니다.
 우리가 정보가 최종적으로 승인되기 전에 사양의 세부정보를 공개하지 않는 이유는, 만약 정보가 너무 일찍 공개되어 변경되는 부분이 생길 때, 상호운용의 문제가 야기될 수 있어서입니다. 
 
-만약 여러분이 MMA에 지금 가입한다면, 전체 MIDI 2.0 사양의 현재 버전에 접근할 수 있을 뿐만 아니라, 프로파일(Profiles)과 프로퍼티 교환(Property Exchange) 신호를 포함한 향후의 MIDI 사양에서도 발언권을 가지게 될 것입니다.
+만약 여러분이 MMA에 지금 가입한다면, 전체 MIDI 2.0 사양의 현재 버전에 접근할 수 있을 뿐만 아니라, 프로파일(Profiles)과 프로퍼티 교환(Property Exchange)메시지를 포함한 향후의 MIDI 사양에서도 발언권을 가지게 될 것입니다.
 
 MIDI-CI와 MIDI 2.0을 구현하기 위해서는 제조업체 SysEx ID가 필요합니다.
 SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버십에 포함되어 있습니다.
-여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 신호를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
+여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 메시지를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환 테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
 
 또한 우리는 MIDI 2.0 로고와 라이선싱 프로그램 개발 작업도 진행중입니다.
 
@@ -133,7 +187,7 @@ SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버
 
 우리는 많은 웹사이트의 코멘트를 모니터링하고 있으며, MIDI 2.0에 대한 몇 가지 질문뿐 아니라 요청한 몇몇 MIDI 2.0 기능에 대한 비디오 또한 제작중에 있습니다. 
 
-<span style="color:red">[ MIDI 2.0 디바이스는 새 커넥터나 케이블의 사용을 필요로 할까? ]</span>
+**- MIDI 2.0 디바이스는 새 커넥터나 케이블의 사용을 필요로 할까?**
 
 아니오, MIDI 2.0는 전송 애그노스틱(시스템에 대한 지식 없이도 기능을 수행할 수 있게 만든 기술) 프로토콜입니다. 
 
@@ -141,76 +195,77 @@ SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버
 * 애그노스틱(Agnostic) - 다른 디바이스들과 호환되도록 설계된 것
 * 프로토콜(Protocol) - 전자 통신 시스템에서 데이터의 처리, 특히 데이터의 서식 설정을 관리하는 규칙의 모임.
 
-공학적으로 말하면, MIDI 2.0은 일련의 신호(messages)로, 이 신호들은 어떠한 특정 케이블이나 커넥터에도 얽매여 있지 않습니다. 
+공학적으로 말하면, MIDI 2.0은 일련의 메시지(messages)로, 이 메시지들은 어떠한 특정 케이블이나 커넥터에도 얽매여 있지 않습니다. 
 MIDI가 처음 나왔을 때 MIDI는 단지 클래식 5핀 DIN 케이블 상에서만 작동되었는데, 이 커넥터의 정의와 어떻게 구성되어 있는지에 대해서는 MIDI 1.0 스펙에 설명되어 있습니다. 
 
 그러나 곧, MIDI 제작자 협회와 음악 전자 산업 협회는 MIDI를 다양한 케이블과 커넥터에서 작동시키는 방법을 규정했습니다.
 
 그래서 꽤 오랫동안, MIDI 1.0은 전송 애그노스틱 프로토콜이었습니다..
 
-MIDI 1.0 신호는 현재 5핀 DIN, 시리얼 포트, TRS(Tip Ring Sleeve) 1/8 케이블들과 파이어와이어 그리고 이더넷 및 각종 다양한 USB 케이블에서 작동합니다.
+MIDI 1.0 메시지는 현재 5핀 DIN, 시리얼 포트, TRS(Tip Ring Sleeve) 1/8 케이블들과 파이어와이어 그리고 이더넷 및 각종 다양한 USB 케이블에서 작동합니다.
 
-<span style="color:red">[이제 MIDI 2.0이 이렇게 다양한 MIDI 1.0 전송 방식으로 실행될 수 있을까?]</span>
+**- 이제 MIDI 2.0이 이렇게 다양한 MIDI 1.0 전송 방식으로 실행될 수 있을까?**
 
 아닙니다. 각 전송방식을 위해 작성된 새 사양을 필요로 할 것입니다. 
 
 이 작업을 더욱 빠르게 진행하는 것을 돕는 모든 현대적인 방식의 전송에 공통되게 될, 새로운 범용 패킷 형식(Universal Packet Format)이 있습니다.
 
-새 범용 패킷은 MIDI 1.0 신호와 MIDI 2.0 신로를 모두 포함하는 데다가 1.0과 2.0 모두에 사용될 수 있는 신호
-또한 포함됩니다. 
+새 범용 패킷은 MIDI 1.0 메시지와 MIDI 2.0 신로를 모두 포함하는 데다가 1.0과 2.0 모두에 사용될 수 있는 메시지 또한 포함됩니다. 
 
 오늘날 가장 대중적인 MIDI 전송 방식은 USB입니다. 
 대부분의 MIDI 제품은 USB를 통하여 컴퓨터 또는 호스트에 연결됩니다. 
 
 USB는 MIDI 2.0의 첫 번째 타깃입니다. 
 
-<span style="color:red">[MIDI 2.0이 더 안정적인 타이밍(timing)을 제공할 수 있을까?]</span>
+**- MIDI 2.0이 더 안정적인 타이밍(timing)을 제공할 수 있을까?**
 
-그렇습니다. MIDI 2.0 전송 정의는 향상된 타이밍 특성을 위해 더 높은 속도로 제공될 수 있습니다. 딜레이를 유발하는 데이터 병목 현상 가능성을 현저히 줄이도록 더 많은 데이터가장치 간에 전송될 것입니다. 
+그렇습니다. MIDI 2.0 전송 정의는 향상된 타이밍 특성을 위해 더 높은 속도로 제공될 수 있습니다. 딜레이를 유발하는 데이터 병목 현상 가능성을 현저히 줄이도록 더 많은 데이터가 장치 간에 전송될 것입니다. 
 
 또한 MIDI 2.0는 선택적으로 "지터 리덕션 타임스탬프(Jitter Reduction Timestamps)"를 제공합니다.
 
-지터 리덕션 타임스탬프(JR Timestamps)로 하여금, 우리는 여러 개의 노트를 이상적인 타이밍으로 재생할 수 있습니다. 실은, 모든 MIDI 신호는 정확한 타이밍 정보로 표시될 수 있습니다. 이는 더 정확한 타이밍을 얻을 수 있느 MIDI 클럭 신호에도 적용됩니다.
+지터 리덕션 타임스탬프(JR Timestamps)로 하여금, 우리는 여러 개의 노트를 이상적인 타이밍으로 재생할 수 있습니다. 실은, 모든 MIDI 메시지는 정확한 타이밍 정보로 표시될 수 있습니다. 이는 더 정확한 타이밍을 얻을 수 있는 MIDI 클럭 메시지에도 적용됩니다.
 
 지터 리덕션 타임스탬프의 목표:
 * 정확한 타이밍으로 퍼포먼스 캡처하기
-* 지터가 발생하는 시스템을 통해 정확한 타이밍으로 MIDI 신호 전달하기
-* 전 시스템에 미치는 동기화와 마스터클럭, 또는 송신자와 수신자 간의 명시적인클럭 동기화에 의존하지 않음.
+* 지터가 발생하는 시스템을 통해 정확한 타이밍으로 MIDI 메시지 전달하기
+* 전 시스템에 미치는 동기화와 마스터클럭, 또는 송신자와 수신자 간의 명시적인 클럭 동기화에 의존하지 않음.
 
 참고: 타이밍에 대한 오류로는 지터(정확성)와 레이턴시(싱크)의 두 가지 원인이 있습니다.
 지터 리덕션 타임스탬프의 메커니즘은 지터로 발생한 오류들만 해결합니다. 
 동기화 문제 혹은 시스템 상의 여러 개의 장치를 넘나들며 생기는 시간 정렬 문제는 레이턴시 측정을 필요로 합니다.
 이는 복잡한 문제이며 JR 타임스탬프의 메커니즘으로는 해결되지 않습니다. 
 
-<span style="color:red">[MIDI 2.0이 더 큰 해상도를 제공할 수 있을 것인가?]</span>
+**- MIDI 2.0이 더 큰 해상도를 제공할 수 있을 것인가?**
 
-그렇습니다. MIDI 1.0 신호는 보통 7비트(128개의 CC 신호만 존재하기에 폭넓게 구현되지 않는 선에서 14비트도 가능)
-MIDI 2.0 벨로서티는 16비트이고 128 개의 컨트롤 변경(control change) 신호, 16,384개의 레지스터 컨트롤러(registered controllers), 16,384개의 할당 가능한 컨트롤러(assignable controllers), 폴리와 채널 프레셔(poly & channel pressure(애프터터치의 기능)) 그리고 피치벤드는 32비트입니다. 
+그렇습니다. MIDI 1.0 메시지는 보통 7비트(128개의 CC 메시지만 존재하기에 폭넓게 구현되지 않는 선에서 14비트도 가능)
+MIDI 2.0 벨로서티는 16비트이고 128 개의 컨트롤 변경(control change) 메시지, 16,384개의 등록 컨트롤러(registered controllers), 16,384개의 할당 가능 컨트롤러(assignable controllers), 폴리와 채널 프레셔(poly & channel pressure(애프터터치의 기능)) 및 피치벤드는 32비트입니다. 
 
-<span style="color:red">MIDI 2.0가 미분음(microtone: 반음보다 작은 음정)의 제어와 다양한 비 서양 스케일을 만드는 것을 더 쉽게 만들 수 있을까?</span> 
+**- MIDI 2.0가 미분음(microtone: 반음보다 작은 음정)의 제어와 다양한 비 서양 스케일을 만드는 것을 더 쉽게 만들 수 있을까?**
 
 네, MIDI 2.0은 직접 음표의 피치를 제어하는 것을 허용합니다(아래 영상들을 보십시오).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UQx1L6nojGE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 1](https://youtu.be/UQx1L6nojGE)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/okrZYm5OJzo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 2](https://youtu.be/okrZYm5OJzo)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/x2QxFnsKWMQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 3](https://youtu.be/x2QxFnsKWMQ)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FWf2y7dzULQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 4](https://youtu.be/FWf2y7dzULQ)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zOysm_lZJmg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[video 5](https://youtu.be/zOysm_lZJmg)
 
 MMA와 AMEI는 MIDI 2.0 프로토타입 작업을 선언합니다.
 
 즉각적인 출시를 위해, MMA와 AMEI는 2019년 1월 18일, 로스 앤젤레스에서 MIDI 2.0 TM에 대한 발표를 진행합니다. 
-	- 미디 제작자 협회(MMA)와 AMEI
+    - 미디 제작자 협회(MMA)와 AMEI
 
-![photo](https://www.midi.org/images/easyblog_articles/413/IMG_036_20180131-234337_1.JPG)
+
+[photo](https://www.midi.org/images/easyblog_articles/413/IMG_036_20180131-234337_1.JPG)
 
 
 > MIDI-CI에 있어서 매우 흥미로운 부분은, 현재 MIDI 1.0 장비와의 하위 호환성을 유지하면서 프로토콜 협상( Protocol Negotiation)이 더 큰 해상도, 더 많은 채널, 향상된 성능 그리고 표현력 등 새로운 기능을 가능하게 만드는 새로운 산업 표준 MIDI 프로토콜에 대한 길을 열었다는 것입니다.
 > 새로운 MIDI 프로토콜은 음악 테크놀로지와 다른 산업의 신기술 사이를 연결하는 역할을 할 것이고, 제작자와 연주자, 그리고 소비자가 향후 새롭고 흥미로운 음악을 경험할 수 있도록 만들 것입니다.
 >  
 > - 하세가와 유타카(Yutaka Hasegawa), AMEI 협회장
+
+[video 6](https://youtu.be/ZAK62mn5-Yc)
