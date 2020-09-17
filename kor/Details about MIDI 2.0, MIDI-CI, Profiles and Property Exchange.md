@@ -73,6 +73,22 @@ MIDI 2.0이 디바이스에 제공하는 추가적인 기능은 MIDI-CI가 활�
 ###
 
 ###
+#### 1.5.6 MIDI 2.0 프로그램 체인지 신호
+MIDI 2.0 프로토콜은 MIDI 1.0의 프로그램 체인지(Program Change) 및 뱅크 셀렉트(악기 선택) 메커니즘을 하나의 신호로 결합합니다. 
+뱅크와 프로그램을 선택을 위한 MIDI 1.0 메카니즘은 3가지 미디 신호를 보내는 것이 필요합니다. 
+MIDI 2.0에서는 하나의 새로운 MIDI 2.0 프로그램 체인지 신호에서 뱅크 선택 및 프로그램 체인지를 복제하는 것으로 메커니즘을 변경합니다.
+MIDI 2.0의 뱅크와 프로그램은 MIDI 1.0에서의 뱅크와 프로그램으로 직접 변환됩니다.
+
+MIDI 2.0 프로그램 체인지 신호는 항상 프로그램 하나를 선택합니다.
+뱅크 유효 비트 (B)는 뱅크 선택이 신호를 통해서 수행되는지 아닌지를 결정합니다.
+
+만약 Bank Valid = 0이면, 신호를 받은 장치는 새 뱅크를 선택하지 않고 프로그램 체인지를 수행하고, 수신 장치는 현재 선택되어 있는 뱅크를 유지합니다.
+
+뱅크 MSB(최상위 비트 : Most Significant Byte)와 뱅크 LSB(최하위 비트 : Least Significant Byte) 데이터필드는 0으로 채워져 있습니다. 
+
+만약 Bank Valid = 1일 때, 수신받은 장치는 뱅크와 프로그램 체인지 모두를 수행합니다.
+
+기타, 아직 정의되지 않고 약속되어 있는 옵션 플래그들이 있습니다.
 
 ### 1. 6 MIDI 1.0의 미래
 
@@ -123,7 +139,7 @@ MIDI 2.0 배너를 들고 있는 사람:
 
 MIDI-CI와 MIDI 2.0을 구현하기 위해서는 제조업체 SysEx ID가 필요합니다.
 SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버십에 포함되어 있습니다.
-여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 신호를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
+여러분 또한 MIDI 2.0을 MIDI 1.0으로 변역하는 (또는 그 반대로) 코드가 있는 MMA 깃헙에 접근할 수 있을 것입니다. 또한 이 깃헙에서는 Art and Logic and Property Exchange Work Bench에서 만든 'MIDI 2.0 스코프'라는, 미디 2.0 신호를 받고 테스트해주는 툴을 볼 수 있습니다. 이 어플리케이션은 프로퍼티 교환 테스트 및 프로토타입 제작을 위해 야마하에서 만들었습니다.
 
 또한 우리는 MIDI 2.0 로고와 라이선싱 프로그램 개발 작업도 진행중입니다.
 
@@ -133,7 +149,7 @@ SysEx ID 자체는 연간 260달러이지만, 이 금액은 당신의 MMA 멤버
 
 우리는 많은 웹사이트의 코멘트를 모니터링하고 있으며, MIDI 2.0에 대한 몇 가지 질문뿐 아니라 요청한 몇몇 MIDI 2.0 기능에 대한 비디오 또한 제작중에 있습니다. 
 
-<span style="color:red">[ MIDI 2.0 디바이스는 새 커넥터나 케이블의 사용을 필요로 할까? ]</span>
+**- MIDI 2.0 디바이스는 새 커넥터나 케이블의 사용을 필요로 할까?**
 
 아니오, MIDI 2.0는 전송 애그노스틱(시스템에 대한 지식 없이도 기능을 수행할 수 있게 만든 기술) 프로토콜입니다. 
 
@@ -150,7 +166,7 @@ MIDI가 처음 나왔을 때 MIDI는 단지 클래식 5핀 DIN 케이블 상에�
 
 MIDI 1.0 신호는 현재 5핀 DIN, 시리얼 포트, TRS(Tip Ring Sleeve) 1/8 케이블들과 파이어와이어 그리고 이더넷 및 각종 다양한 USB 케이블에서 작동합니다.
 
-<span style="color:red">[이제 MIDI 2.0이 이렇게 다양한 MIDI 1.0 전송 방식으로 실행될 수 있을까?]</span>
+**- 이제 MIDI 2.0이 이렇게 다양한 MIDI 1.0 전송 방식으로 실행될 수 있을까?**
 
 아닙니다. 각 전송방식을 위해 작성된 새 사양을 필요로 할 것입니다. 
 
@@ -164,53 +180,55 @@ MIDI 1.0 신호는 현재 5핀 DIN, 시리얼 포트, TRS(Tip Ring Sleeve) 1/8 �
 
 USB는 MIDI 2.0의 첫 번째 타깃입니다. 
 
-<span style="color:red">[MIDI 2.0이 더 안정적인 타이밍(timing)을 제공할 수 있을까?]</span>
+**- MIDI 2.0이 더 안정적인 타이밍(timing)을 제공할 수 있을까?**
 
-그렇습니다. MIDI 2.0 전송 정의는 향상된 타이밍 특성을 위해 더 높은 속도로 제공될 수 있습니다. 딜레이를 유발하는 데이터 병목 현상 가능성을 현저히 줄이도록 더 많은 데이터가장치 간에 전송될 것입니다. 
+그렇습니다. MIDI 2.0 전송 정의는 향상된 타이밍 특성을 위해 더 높은 속도로 제공될 수 있습니다. 딜레이를 유발하는 데이터 병목 현상 가능성을 현저히 줄이도록 더 많은 데이터가 장치 간에 전송될 것입니다. 
 
 또한 MIDI 2.0는 선택적으로 "지터 리덕션 타임스탬프(Jitter Reduction Timestamps)"를 제공합니다.
 
-지터 리덕션 타임스탬프(JR Timestamps)로 하여금, 우리는 여러 개의 노트를 이상적인 타이밍으로 재생할 수 있습니다. 실은, 모든 MIDI 신호는 정확한 타이밍 정보로 표시될 수 있습니다. 이는 더 정확한 타이밍을 얻을 수 있느 MIDI 클럭 신호에도 적용됩니다.
+지터 리덕션 타임스탬프(JR Timestamps)로 하여금, 우리는 여러 개의 노트를 이상적인 타이밍으로 재생할 수 있습니다. 실은, 모든 MIDI 신호는 정확한 타이밍 정보로 표시될 수 있습니다. 이는 더 정확한 타이밍을 얻을 수 있는 MIDI 클럭 신호에도 적용됩니다.
 
 지터 리덕션 타임스탬프의 목표:
 * 정확한 타이밍으로 퍼포먼스 캡처하기
 * 지터가 발생하는 시스템을 통해 정확한 타이밍으로 MIDI 신호 전달하기
-* 전 시스템에 미치는 동기화와 마스터클럭, 또는 송신자와 수신자 간의 명시적인클럭 동기화에 의존하지 않음.
+* 전 시스템에 미치는 동기화와 마스터클럭, 또는 송신자와 수신자 간의 명시적인 클럭 동기화에 의존하지 않음.
 
 참고: 타이밍에 대한 오류로는 지터(정확성)와 레이턴시(싱크)의 두 가지 원인이 있습니다.
 지터 리덕션 타임스탬프의 메커니즘은 지터로 발생한 오류들만 해결합니다. 
 동기화 문제 혹은 시스템 상의 여러 개의 장치를 넘나들며 생기는 시간 정렬 문제는 레이턴시 측정을 필요로 합니다.
 이는 복잡한 문제이며 JR 타임스탬프의 메커니즘으로는 해결되지 않습니다. 
 
-<span style="color:red">[MIDI 2.0이 더 큰 해상도를 제공할 수 있을 것인가?]</span>
+**- MIDI 2.0이 더 큰 해상도를 제공할 수 있을 것인가?**
 
 그렇습니다. MIDI 1.0 신호는 보통 7비트(128개의 CC 신호만 존재하기에 폭넓게 구현되지 않는 선에서 14비트도 가능)
-MIDI 2.0 벨로서티는 16비트이고 128 개의 컨트롤 변경(control change) 신호, 16,384개의 레지스터 컨트롤러(registered controllers), 16,384개의 할당 가능한 컨트롤러(assignable controllers), 폴리와 채널 프레셔(poly & channel pressure(애프터터치의 기능)) 그리고 피치벤드는 32비트입니다. 
+MIDI 2.0 벨로서티는 16비트이고 128 개의 컨트롤 변경(control change) 신호, 16,384개의 레지스터 컨트롤러(registered controllers), 16,384개의 할당 가능한 컨트롤러(assignable controllers), 폴리와 채널 프레셔(poly & channel pressure(애프터터치의 기능)) 및 피치벤드는 32비트입니다. 
 
-<span style="color:red">MIDI 2.0가 미분음(microtone: 반음보다 작은 음정)의 제어와 다양한 비 서양 스케일을 만드는 것을 더 쉽게 만들 수 있을까?</span> 
+**- MIDI 2.0가 미분음(microtone: 반음보다 작은 음정)의 제어와 다양한 비 서양 스케일을 만드는 것을 더 쉽게 만들 수 있을까?**
 
 네, MIDI 2.0은 직접 음표의 피치를 제어하는 것을 허용합니다(아래 영상들을 보십시오).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UQx1L6nojGE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 1](https://youtu.be/UQx1L6nojGE)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/okrZYm5OJzo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 2](https://youtu.be/okrZYm5OJzo)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/x2QxFnsKWMQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 3](https://youtu.be/x2QxFnsKWMQ)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FWf2y7dzULQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[video 4](https://youtu.be/FWf2y7dzULQ)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zOysm_lZJmg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[video 5](https://youtu.be/zOysm_lZJmg)
 
 MMA와 AMEI는 MIDI 2.0 프로토타입 작업을 선언합니다.
 
 즉각적인 출시를 위해, MMA와 AMEI는 2019년 1월 18일, 로스 앤젤레스에서 MIDI 2.0 TM에 대한 발표를 진행합니다. 
 	- 미디 제작자 협회(MMA)와 AMEI
 
-![photo](https://www.midi.org/images/easyblog_articles/413/IMG_036_20180131-234337_1.JPG)
+
+[photo](https://www.midi.org/images/easyblog_articles/413/IMG_036_20180131-234337_1.JPG)
 
 
 > MIDI-CI에 있어서 매우 흥미로운 부분은, 현재 MIDI 1.0 장비와의 하위 호환성을 유지하면서 프로토콜 협상( Protocol Negotiation)이 더 큰 해상도, 더 많은 채널, 향상된 성능 그리고 표현력 등 새로운 기능을 가능하게 만드는 새로운 산업 표준 MIDI 프로토콜에 대한 길을 열었다는 것입니다.
 > 새로운 MIDI 프로토콜은 음악 테크놀로지와 다른 산업의 신기술 사이를 연결하는 역할을 할 것이고, 제작자와 연주자, 그리고 소비자가 향후 새롭고 흥미로운 음악을 경험할 수 있도록 만들 것입니다.
 >  
 > - 하세가와 유타카(Yutaka Hasegawa), AMEI 협회장
+
+[video 6](https://youtu.be/ZAK62mn5-Yc)
